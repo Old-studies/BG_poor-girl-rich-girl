@@ -30,35 +30,32 @@ namespace ButchersGames
 
         void Update()
         {
-            // Обрабатываем свайпы
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Moved)
                 {
                     lateralOffset += touch.deltaPosition.x * swipeSensitivity * Time.deltaTime;
-                    lateralOffset = Mathf.Clamp(lateralOffset, -maxOffset, maxOffset); // Ограничиваем смещение
+                    lateralOffset = Mathf.Clamp(lateralOffset, -maxOffset, maxOffset);
                 }
             }
 
-            // Движение по сплайну
             progress += speed * Time.deltaTime;
             if (progress > 1f)
             {
-                progress = 0f;
+                Debug.Log("You are win!");
+                /*progress = 0f;
                 lateralOffset = 0;
-                transform.rotation = startRotation;
+                transform.rotation = startRotation;*/
             }
 
-            // Вычисляем позицию на сплайне с учетом поперечного смещения
             Vector3 position = spline.EvaluatePosition(progress);
             Vector3 tangent = ((Vector3)spline.EvaluateTangent(progress)).normalized;
 
-            // Вращаем объект в направлении касательного вектора
             if (tangent != Vector3.zero)
             {
                 Quaternion rotation = Quaternion.LookRotation(tangent);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed); // rotationSpeed регулирует скорость поворота
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
             }
 
             Vector3 normal = Vector3.Cross(tangent, Vector3.up).normalized;

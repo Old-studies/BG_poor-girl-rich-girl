@@ -1,3 +1,6 @@
+using System;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ButchersGames
@@ -20,5 +23,38 @@ namespace ButchersGames
         }
     }
 #endif
+
+        [SerializeField] TextMeshProUGUI scoreTMP;
+
+        private int currentScore = 0;
+
+        private void Start()
+        {
+            scoreTMP.text = currentScore.ToString();
+        }
+
+        private void OnEnable()
+        {
+            CollideController.OnAddScore += AddScore;
+            CollideController.OnMultiplyScore += MultiplyScore;
+        }
+
+        private void OnDisable()
+        {
+            CollideController.OnAddScore -= AddScore;
+            CollideController.OnMultiplyScore -= MultiplyScore;
+        }
+
+        private void AddScore(int sum)
+        {
+            currentScore += sum;
+            scoreTMP.text = currentScore.ToString();
+        }
+
+        private void MultiplyScore(int multiplier)
+        {
+            currentScore *= multiplier;
+            scoreTMP.text = currentScore.ToString();
+        }
     }
 }

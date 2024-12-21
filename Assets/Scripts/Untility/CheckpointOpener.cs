@@ -7,22 +7,22 @@ public class CheckpointOpener : MonoBehaviour
 {
     [SerializeField] Transform player;
     [SerializeField] Vector3 axisRotation;
-     float minDistanceToPlayer = 3;
+    [SerializeField] float minDistanceToPlayer = 3;
 
-
-    private bool isRotated = false;
-
-    private void Start()
-    {
-
-    }
+    private bool isClosed = true;
 
     private void Update()
     {
-        if(!isRotated && (transform.position - player.position).magnitude < minDistanceToPlayer)
+        if(isClosed && (transform.position - player.position).magnitude < minDistanceToPlayer)
         {
-            isRotated = true;
+            isClosed = false;
             transform.DORotate(transform.eulerAngles + axisRotation, 0.3f, RotateMode.FastBeyond360)
+                .SetEase(Ease.Linear);
+        }
+        else if (!isClosed && (transform.position - player.position).magnitude > minDistanceToPlayer)
+        {
+            isClosed = true;
+            transform.DORotate(transform.eulerAngles - axisRotation, 0.3f, RotateMode.FastBeyond360)
                 .SetEase(Ease.Linear);
         }
     }

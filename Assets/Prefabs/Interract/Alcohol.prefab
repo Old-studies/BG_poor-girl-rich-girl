@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2442623232970933091}
   - component: {fileID: -8616623688551761097}
+  - component: {fileID: 5308270666691470805}
   m_Layer: 0
   m_Name: Alcohol
-  m_TagString: Untagged
+  m_TagString: Alcohol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +48,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationDuration: 3
+--- !u!135 &5308270666691470805
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207212917798886208}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.32
+  m_Center: {x: 0, y: 0.19, z: 0}
 --- !u!1 &3971293167601986528
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Alcohol
   - Money
+  - Education
+  - Party
   layers:
   - Default
   - TransparentFX
